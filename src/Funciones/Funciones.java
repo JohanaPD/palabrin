@@ -13,19 +13,19 @@ public class Funciones {
             "monarcas", "ocelotes", "racistas", "soñadora", "trajeran", "virreyes"
     };
 
-    String[] arrayEscoger = new String[31];
+
     /*Pedir palabra*/
 
     public String escogerPalabra() {
-        int aleatorio = (int) (Math.random() * 31 + 1);
-        String palabra = arrayEscoger[aleatorio];
+        int aleatorio = (int) (Math.random() * 30);
+        String palabra = palabraDia[aleatorio];
         return palabra;
     }
 
-    public char[] convertirChar(String palabra, char[] arrayChar) {
-         arrayChar = new char[NUMERO_CARACTER];
-        arrayChar = palabra.toCharArray();
-        return arrayChar;
+    public char[] convertirChar(String palabra) {
+            char[] arrayIntro = new char[NUMERO_CARACTER];
+            arrayIntro = palabra.toCharArray();
+        return arrayIntro;
     }
 
     public String introducirPalabra() {
