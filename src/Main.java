@@ -4,7 +4,10 @@ public class Main {
     static Funciones usar = new Funciones();
     static int FILAS_N = 10;
     static int COLUMNAS_N = 8;
-
+    public static final String ANSI_VOLVER_A_BLANCO= "\u001B[0m";
+    public static final String ANSI_VERDE = "\u001B[32m";
+    public static final String ANSI_AMARILLO = "\u001B[33m";
+    static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) {
         System.out.println("PREPARATE PARA ADIVINAR");
 
@@ -21,17 +24,25 @@ public class Main {
             //Convierto palabra aleatoria en array
             arrayAleat = usar.convertirChar(palabraHoy);
 
-            do {
-                palabraEscrita = usar.introducirPalabra().toUpperCase();
-                arrayHoy = palabraEscrita.toCharArray();
-                contador++;
+            do {System.out.println("Introduzca una palabra real de  8 letras ");
                 for (int i = 0; i < FILAS_N; i++) {
+                    palabraEscrita = usar.introducirPalabra().toUpperCase();
+                    arrayHoy = palabraEscrita.toCharArray();
+                    contador++;
+
                     for (int j = 0; j < COLUMNAS_N; j++) {
+                        if(arrayHoy[j]==arrayAleat[j]){
+                            sb.append(ANSI_VERDE + arrayHoy[j] + ANSI_VOLVER_A_BLANCO);
+                        } else if (palabraHoy.contains(Character.toString(arrayHoy[j]))) {
+                            sb.append(ANSI_AMARILLO + arrayHoy[j] + ANSI_VOLVER_A_BLANCO);
+                        }
                         System.out.print(" " + arrayHoy[j] + " ");
                     }
-                    System.out.println();
+
                 }
-            } while (contador == COLUMNAS_N);
+                System.out.println();
+            }
+            while (contador == COLUMNAS_N);
 
         } while (palabraHoy.equals(""));
 

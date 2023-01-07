@@ -29,7 +29,6 @@ public class Funciones {
     }
 
     public String introducirPalabra() {
-        System.out.println("Introduzca una palabra real de  8 letras ");
         String palabra;
         do {
             palabra = sc.nextLine();
