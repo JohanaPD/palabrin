@@ -1,5 +1,10 @@
 import Funciones.Funciones;
-
+/**
+   * Ejercicio: Palabrín.
+   *
+   * @author JohanaPardo 1DAW
+   * @version 07.01.2023
+   */
 public class Main {
     static Funciones usar = new Funciones();
     static int FILAS_N = 10;
