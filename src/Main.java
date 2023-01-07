@@ -7,22 +7,32 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("PREPARATE PARA ADIVINAR");
-        String palabraHoy="";
+
+        String palabraHoy = "";
+        String palabraEscrita = "";
         char[] arrayAleat;
+        char[] arrayHoy;
+        int contador = 0;
         do {
-            palabraHoy=usar.escogerPalabra();
+            palabraHoy = usar.escogerPalabra().toUpperCase();
             //Unicamente para verificar que coge la palabra, luego eliinar
             System.out.println(palabraHoy);
-            arrayAleat= new char[palabraHoy.length()];
+            arrayAleat = new char[palabraHoy.length()];
             //Convierto palabra aleatoria en array
-            arrayAleat=usar.convertirChar(palabraHoy);
+            arrayAleat = usar.convertirChar(palabraHoy);
 
-            for (int i = 0; i < COLUMNAS_N; i++) {
-                for (int j = 0; j < FILAS_N; j++) {
-                    System.out.print(" _ ");
+            do {
+                palabraEscrita = usar.introducirPalabra().toUpperCase();
+                arrayHoy = palabraEscrita.toCharArray();
+                contador++;
+                for (int i = 0; i < FILAS_N; i++) {
+                    for (int j = 0; j < COLUMNAS_N; j++) {
+                        System.out.print(" " + arrayHoy[j] + " ");
+                    }
+                    System.out.println();
                 }
-                System.out.println();
-            }
+            } while (contador == COLUMNAS_N);
+
         } while (palabraHoy.equals(""));
 
     }
