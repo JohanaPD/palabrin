@@ -13,7 +13,7 @@ public class Main {
     public static final String ANSI_VOLVER_A_BLANCO = "\u001B[0m";
     public static final String ANSI_VERDE = "\u001B[32m";
     public static final String ANSI_AMARILLO = "\u001B[33m";
-    static StringBuilder sb = new StringBuilder();
+    static final int SCORE= 1000;
 
     public static void main(String[] args) {
         System.out.println("PREPARATE PARA ADIVINAR");
