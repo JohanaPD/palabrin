@@ -95,7 +95,8 @@ public class Funciones {
             System.out.println(palabra);
             if (palabra.equals("POKE")){
                 break; //función Fer
-            } else if (palabra.length() < NUMERO_CARACTER || palabra.length() > NUMERO_CARACTER) {
+            }
+            if (palabra.length() < NUMERO_CARACTER || palabra.length() > NUMERO_CARACTER) {
                 System.out.println("La palabra no tiene el número de letras solicitado");
             } else if (Arrays.binarySearch(diccionario, palabra) < 0) {
                 System.out.println("La palabra " + palabra + " no se encuentra en el diccionario");
