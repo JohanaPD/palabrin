@@ -2,6 +2,7 @@ import Funciones.Funciones;
 
 /**
  * Ejercicio: Palabrín.
+ *
  * @author JohanaPardo, Fernando García 1DAW
  * @version 07.01.2023
  */
@@ -17,19 +18,18 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("PREPARATE PARA ADIVINAR");
-
         String palabraHoy = "";
         String palabraEscrita = "";
         String palabraWin = "VICTORIA";
-        char[] arrayAleat;
-        char[] arrayHoy;
-        char[] victoria = usar.convertirChar(palabraWin);
         int contador = 0;
         int score = SCORE;
         int fallo = FALLO;
         boolean juego = true;
-
+        char[] arrayAleat;
+        char[] arrayHoy;
+        char[] victoria = usar.convertirChar(palabraWin);
         String[] diccionario = usar.diccionario();
+
         do {
             palabraHoy = usar.escogerPalabra().toUpperCase();
             System.out.println(palabraHoy);
@@ -37,30 +37,24 @@ public class Main {
             //Convierto palabra aleatoria en array
             arrayAleat = usar.convertirChar(palabraHoy);
             do {
-
-                palabraEscrita = usar.introducirPalabra(diccionario).toUpperCase();
+                palabraEscrita = usar.introducirPalabra(diccionario);
                 arrayHoy = palabraEscrita.toCharArray();
-                System.out.println(palabraEscrita);
                 contador++;
-
-                if(!palabraEscrita.equals("POKE")) {
-                    for (int j = 0; j < COLUMNAS_N; j++) {
+                for (int j = 0; j < COLUMNAS_N; j++) {
                    /* if (palabraEscrita.equals("POKE")) {
                         int numero = (int) (Math.random() * palabraEscrita.length() - 1);
                         System.out.println(arrayHoy[numero]);
                     } else */
-                        if (arrayHoy[j] == arrayAleat[j]) {
-                            System.out.print(ANSI_VERDE + arrayHoy[j] + ANSI_VOLVER_A_BLANCO + " ");
+                    if (arrayHoy[j] == arrayAleat[j]) {
+                        System.out.print(ANSI_VERDE + arrayHoy[j] + ANSI_VOLVER_A_BLANCO + " ");
 
-                        } else if (palabraHoy.contains(Character.toString(arrayHoy[j]))) {
+                    } else if (palabraHoy.contains(Character.toString(arrayHoy[j]))) {
 
-                            System.out.print(ANSI_AMARILLO + arrayHoy[j] + ANSI_VOLVER_A_BLANCO + " ");
-                        } else {
-                            System.out.print(arrayHoy[j] + " ");
-                        }
-
-
+                        System.out.print(ANSI_AMARILLO + arrayHoy[j] + ANSI_VOLVER_A_BLANCO + " ");
+                    } else {
+                        System.out.print(arrayHoy[j] + " ");
                     }
+
                     if (palabraHoy.equals(palabraEscrita)) {
                         System.out.println();
                         juego = false;
@@ -69,9 +63,6 @@ public class Main {
                         juego = false;
                     }
                 }
-
-                System.out.println("Tu puntuación " + score);
-
             } while (juego == true);
             if (score == 0) {
                 System.out.println("Has perdido");
@@ -82,6 +73,6 @@ public class Main {
             }
 
 
-        }while (juego == true) ;
+        } while (juego == true);
     }
 }

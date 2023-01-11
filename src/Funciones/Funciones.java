@@ -5,7 +5,8 @@ package Funciones;
  * @version 07.01.2023
  */
 
-import java.io.File;
+import jdk.swing.interop.SwingInterOpUtils;
+
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -27,34 +28,20 @@ public class Funciones {
 
     public String[] diccionario() {
         try {
-            // Cargamos el fichero txt guardado en la carpeta del proyecto
             sc = new Scanner(new FileReader("resources/palabras.txt"));
             String str;
-            //repetir hasta terminar de leer el fichero
             while (sc.hasNext()) {
                 str = sc.next();
-                // añadir palabra al diccionario
                 diccionario[iv] = str;
                 iv++;
             }
         } catch (FileNotFoundException e) {
-            // asegurarse que la ruta y el nombre del fichero son correctos
             System.err.println("Fichero no encontrado");
         } finally {
             sc.close();
         }
-
         return diccionario;
     }
-
-
-
-
-
-
-
-
-    /*Pedir palabra*/
 
     /**
      * Escoger palabra dentro del array "palabraDia".
@@ -85,27 +72,31 @@ public class Funciones {
      * @return palabra String palabra introducida por el usuario .
      */
     public String introducirPalabra(String[] diccionario) {
+        //Pruebas de diccionario ok, carga ok
         String palabra;
+        boolean boo = true;
         sc = new Scanner(System.in);
-        System.out.println("Introduce una palabra para buscar en el diccionario" + diccionario.length);
+        System.out.println();
+        System.out.println("Introduce una palabra para buscar en el diccionario");
         do {
             palabra = sc.nextLine();
-            palabra=palabra.trim();
-            palabra=palabra.toUpperCase();
-            System.out.println(palabra);
-            if (palabra.equals("POKE")){
-                break; //función Fer
-            }
-            if (palabra.length() < NUMERO_CARACTER || palabra.length() > NUMERO_CARACTER) {
+            palabra = palabra.trim();
+            palabra = palabra.toUpperCase();
+
+           if (palabra.length() < NUMERO_CARACTER || palabra.length() > NUMERO_CARACTER) {
                 System.out.println("La palabra no tiene el número de letras solicitado");
-            } else if (Arrays.binarySearch(diccionario, palabra) < 0) {
+            } else if (palabra.equals("POKE")) {
+                System.out.println("ENTRANDO EN POKE");
+                boo = false; //función Fer
+            }  else if (Arrays.binarySearch(diccionario, palabra) < 0) {
                 System.out.println("La palabra " + palabra + " no se encuentra en el diccionario");
+            }else {
+                System.out.println(palabra + " se encuentra en el diccionario");
             }
-        } while (palabra.length() == NUMERO_CARACTER || Arrays.binarySearch(diccionario, palabra) < 0);
-
-        System.out.println(palabra + " se encuentra en el diccionario");
-
-
+        } while (palabra.length() != NUMERO_CARACTER && Arrays.binarySearch(diccionario, palabra) < 0 || boo == false); /*&& Arrays.binarySearch(diccionario, palabra) < 0) */
+        if (!palabra.equals("POKE")) {
+            System.out.println(palabra + " se encuentra en el diccionario");
+        }
         return palabra;
     }
 
