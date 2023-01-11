@@ -87,20 +87,20 @@ public class Funciones {
     public String introducirPalabra(String[] diccionario) {
         String palabra;
         sc = new Scanner(System.in);
-        System.out.println("Introduce una palabra para buscar en el diccionario");
+        System.out.println("Introduce una palabra para buscar en el diccionario" + diccionario.length);
         do {
             palabra = sc.nextLine();
             palabra=palabra.trim();
             palabra=palabra.toUpperCase();
+            System.out.println(palabra);
             if (palabra.equals("POKE")){
-                palabra = "POKE";
-                break;
-            } else if (!palabra.equals("POKE") && palabra.length() < NUMERO_CARACTER || palabra.length() > NUMERO_CARACTER) {
+                break; //función Fer
+            } else if (palabra.length() < NUMERO_CARACTER || palabra.length() > NUMERO_CARACTER) {
                 System.out.println("La palabra no tiene el número de letras solicitado");
-            } else if (!palabra.equals("POKE") && (Arrays.binarySearch(diccionario, palabra) < 0)) {
+            } else if (Arrays.binarySearch(diccionario, palabra) < 0) {
                 System.out.println("La palabra " + palabra + " no se encuentra en el diccionario");
             }
-        } while ((palabra.length() == NUMERO_CARACTER || Arrays.binarySearch(diccionario, palabra) < 0) || palabra.equals("POKE"));
+        } while (palabra.length() == NUMERO_CARACTER || Arrays.binarySearch(diccionario, palabra) < 0);
 
         System.out.println(palabra + " se encuentra en el diccionario");
 

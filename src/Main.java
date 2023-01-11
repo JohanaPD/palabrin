@@ -43,31 +43,31 @@ public class Main {
                 System.out.println(palabraEscrita);
                 contador++;
 
-
-                for (int j = 0; j < COLUMNAS_N; j++) {
-                    if (palabraEscrita.equals("POKE")) {
+                if(!palabraEscrita.equals("POKE")) {
+                    for (int j = 0; j < COLUMNAS_N; j++) {
+                   /* if (palabraEscrita.equals("POKE")) {
                         int numero = (int) (Math.random() * palabraEscrita.length() - 1);
                         System.out.println(arrayHoy[numero]);
-                    } else if (arrayHoy[j] == arrayAleat[j]) {
-                        System.out.print(ANSI_VERDE + arrayHoy[j] + ANSI_VOLVER_A_BLANCO + " ");
+                    } else */
+                        if (arrayHoy[j] == arrayAleat[j]) {
+                            System.out.print(ANSI_VERDE + arrayHoy[j] + ANSI_VOLVER_A_BLANCO + " ");
 
-                    } else if (palabraHoy.contains(Character.toString(arrayHoy[j]))) {
+                        } else if (palabraHoy.contains(Character.toString(arrayHoy[j]))) {
 
-                        System.out.print(ANSI_AMARILLO + arrayHoy[j] + ANSI_VOLVER_A_BLANCO + " ");
-                    } else {
-                        System.out.print(arrayHoy[j] + " ");
+                            System.out.print(ANSI_AMARILLO + arrayHoy[j] + ANSI_VOLVER_A_BLANCO + " ");
+                        } else {
+                            System.out.print(arrayHoy[j] + " ");
+                        }
+
+
                     }
-
-
-                }
-
-
-                if (palabraHoy.equals(palabraEscrita)) {
-                    System.out.println();
-                    juego = false;
-                } else score = score - fallo;
-                if (score == 0) {
-                    juego = false;
+                    if (palabraHoy.equals(palabraEscrita)) {
+                        System.out.println();
+                        juego = false;
+                    } else score = score - fallo;
+                    if (score == 0) {
+                        juego = false;
+                    }
                 }
 
                 System.out.println("Tu puntuación " + score);
