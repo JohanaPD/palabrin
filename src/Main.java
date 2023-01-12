@@ -36,7 +36,6 @@ public class Main {
             do {
                 for (int i = 0; i < FILAS_N; i++) {
                     palabraEscrita = usar.introducirPalabra(diccionario, palabraHoy);
-                    //System.out.println(palabraEscrita);
                     arrayHoy = palabraEscrita.toCharArray();
                     if (palabraHoy.equals(palabraEscrita)) {
                         juego = false;

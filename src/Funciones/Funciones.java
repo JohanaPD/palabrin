@@ -49,7 +49,7 @@ String palabraReply="";
      */
     public String escogerPalabra() {
         int aleatorio = (int) (Math.random() * 30);
-        String palabra = diccionario[aleatorio];
+        String palabra = diccionario[aleatorio].trim();
         return palabra;
     }
 
@@ -67,7 +67,6 @@ String palabraReply="";
 
     /**
      * Dejar al usuario introducir por consola una palabra".
-     *
      * @return palabra String palabra introducida por el usuario .
      */
     public String introducirPalabra(String[] diccionario, String palabraH) {
@@ -100,6 +99,10 @@ String palabraReply="";
         return palabra;
     }
 
+    /**
+     * Escoger la pista a dar al usuario una vez este la solicita.
+     * @param array Pista char Array con la palabra del día que elegirá 3 letras para dar.
+     */
     public void darPista(char[] arrayPista) {
         int aleat;
         String letra="";
@@ -119,7 +122,14 @@ String palabraReply="";
             }
         } while (!letra.contains(""));
     }
-
+    /**
+     * Escoger la pista a dar al usuario una vez este la solicita.
+     * @param variable1 string con la palabra facilitada por el usuario
+     * @param variable2 string con la palabra escogída aleatoriamente
+     * @param variable3 constante con la palabra para pedir pista
+     * @param pistas  constante con el número de pistas que tiene un usuario en cada uego
+     * @param Pista  variable numérica que cuenta las pistas usadas en el juego
+     */
     public void poke(String palabraEscrita ,String palabraHoy , String PALABRA_PISTA, int PISTAS, int pista) {
         if (palabraEscrita.equals(PALABRA_PISTA)) {
             if (pista >= PISTAS) {
