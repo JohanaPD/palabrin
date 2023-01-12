@@ -13,7 +13,6 @@ public class Main {
     public static final String ANSI_VOLVER_A_BLANCO = "\u001B[0m";
     public static final String ANSI_VERDE = "\u001B[32m";
     public static final String ANSI_AMARILLO = "\u001B[33m";
-    static final int SCORE = 1000;
     static final int FALLO = 100;
 
     public static void main(String[] args) {
@@ -22,7 +21,7 @@ public class Main {
         String palabraEscrita = "";
         String palabraWin = "VICTORIA";
         int contador = 0;
-        int score = SCORE;
+        int score = 1000;
         int fallo = FALLO;
         boolean juego = true;
         char[] arrayAleat;
@@ -33,37 +32,31 @@ public class Main {
         do {
             palabraHoy = usar.escogerPalabra().toUpperCase();
             System.out.println(palabraHoy);
-            arrayAleat = new char[palabraHoy.length()];
             //Convierto palabra aleatoria en array
             arrayAleat = usar.convertirChar(palabraHoy);
             do {
-                palabraEscrita = usar.introducirPalabra(diccionario);
-                arrayHoy = palabraEscrita.toCharArray();
-                contador++;
-                for (int j = 0; j < COLUMNAS_N; j++) {
-                   /* if (palabraEscrita.equals("POKE")) {
-                        int numero = (int) (Math.random() * palabraEscrita.length() - 1);
-                        System.out.println(arrayHoy[numero]);
-                    } else */
-                    if (arrayHoy[j] == arrayAleat[j]) {
-                        System.out.print(ANSI_VERDE + arrayHoy[j] + ANSI_VOLVER_A_BLANCO + " ");
-
-                    } else if (palabraHoy.contains(Character.toString(arrayHoy[j]))) {
-
-                        System.out.print(ANSI_AMARILLO + arrayHoy[j] + ANSI_VOLVER_A_BLANCO + " ");
-                    } else {
-                        System.out.print(arrayHoy[j] + " ");
+                for (int i = 0; i < FILAS_N; i++) {
+                    palabraEscrita = usar.introducirPalabra(diccionario, palabraHoy);
+                    arrayHoy = palabraEscrita.toCharArray();
+                    contador++;
+                    for (int j = 0; j < COLUMNAS_N; j++) {
+                        if (arrayHoy[j] == arrayAleat[j]) {
+                            System.out.print(ANSI_VERDE + arrayHoy[j] + ANSI_VOLVER_A_BLANCO + " ");
+                        } else if (palabraHoy.contains(Character.toString(arrayHoy[j]))) {
+                            System.out.print(ANSI_AMARILLO + arrayHoy[j] + ANSI_VOLVER_A_BLANCO + " ");
+                        } else {
+                            System.out.print(arrayHoy[j] + " ");
+                        }
                     }
-
                     if (palabraHoy.equals(palabraEscrita)) {
-                        System.out.println();
                         juego = false;
-                    } else score = score - fallo;
+                    } else score = score - FALLO;
                     if (score == 0) {
                         juego = false;
                     }
+
                 }
-            } while (juego == true);
+            } while (juego);
             if (score == 0) {
                 System.out.println("Has perdido");
             } else {
@@ -71,8 +64,6 @@ public class Main {
                 System.out.println("tu puntuacion es de: " + score);
                 juego = false;
             }
-
-
-        } while (juego == true);
+        } while (juego);
     }
 }
