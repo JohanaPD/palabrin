@@ -20,7 +20,6 @@ public class Main {
         String palabraHoy = "";
         String palabraEscrita = "";
         String palabraWin = "VICTORIA";
-        int contador = 0;
         int score = 1000;
         int fallo = FALLO;
         boolean juego = true;
@@ -31,14 +30,20 @@ public class Main {
 
         do {
             palabraHoy = usar.escogerPalabra().toUpperCase();
-            System.out.println(palabraHoy);
+            System.out.print(palabraHoy);
             //Convierto palabra aleatoria en array
             arrayAleat = usar.convertirChar(palabraHoy);
             do {
                 for (int i = 0; i < FILAS_N; i++) {
                     palabraEscrita = usar.introducirPalabra(diccionario, palabraHoy);
+                    //System.out.println(palabraEscrita);
                     arrayHoy = palabraEscrita.toCharArray();
-                    contador++;
+                    if (palabraHoy.equals(palabraEscrita)) {
+                        juego = false;
+                    } else score = score - FALLO;
+                    if (score == 0) {
+                        juego = false;
+                    }
                     for (int j = 0; j < COLUMNAS_N; j++) {
                         if (arrayHoy[j] == arrayAleat[j]) {
                             System.out.print(ANSI_VERDE + arrayHoy[j] + ANSI_VOLVER_A_BLANCO + " ");
@@ -47,13 +52,10 @@ public class Main {
                         } else {
                             System.out.print(arrayHoy[j] + " ");
                         }
+
                     }
-                    if (palabraHoy.equals(palabraEscrita)) {
-                        juego = false;
-                    } else score = score - FALLO;
-                    if (score == 0) {
-                        juego = false;
-                    }
+                    System.out.println(score);
+
 
                 }
             } while (juego);

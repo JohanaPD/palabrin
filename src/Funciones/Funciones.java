@@ -25,13 +25,6 @@ String palabraReply="";
     char[] arrayHoy;
     char[] arrayAleat= new char[PISTAS];
     int iv = 0;
-    public static String[] palabraDia = {"anatemas", "amuletos", "balbuceos", "baldosas", "censores", "centavos",
-            "distingo", "diversos", "escápula", "esférica", "factores", "faraones",
-            "Germania", "gestando", "halógeno", "haraposo", "inéditos", "inútiles",
-            "Jordania", "jornales", "kuwaitís", "káiseres", "lucrosos", "Luisiana",
-            "monarcas", "ocelotes", "racistas", "soñadora", "trajeran", "virreyes"
-    };
-
     public String[] diccionario() {
         try {
             sc = new Scanner(new FileReader("resources/palabras.txt"));
@@ -56,7 +49,7 @@ String palabraReply="";
      */
     public String escogerPalabra() {
         int aleatorio = (int) (Math.random() * 30);
-        String palabra = palabraDia[aleatorio];
+        String palabra = diccionario[aleatorio];
         return palabra;
     }
 
@@ -72,10 +65,6 @@ String palabraReply="";
         return arrayIntro;
     }
 
-/**
- * Funció para recuperar la palabra elegida en el main
- * @return palabra String palabra elegida en el main*/
-
     /**
      * Dejar al usuario introducir por consola una palabra".
      *
@@ -86,6 +75,7 @@ String palabraReply="";
         String palabraHoy=palabraH;
         boolean boo = true;
         sc = new Scanner(System.in);
+        System.out.println();
         System.out.println("Introduce una palabra para buscar en el diccionario\n");
         do {
             palabra = sc.nextLine();
