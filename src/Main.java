@@ -19,17 +19,15 @@ public class Main {
         System.out.println("PREPARATE PARA ADIVINAR");
         String palabraHoy = "";
         String palabraEscrita = "";
-        String palabraWin = "VICTORIA";
         int score = 1000;
         int fallo = FALLO;
         boolean juego = true;
         char[] arrayAleat;
         char[] arrayHoy;
-        char[] victoria = usar.convertirChar(palabraWin);
         String[] diccionario = usar.diccionario();
 
         do {
-            palabraHoy = usar.escogerPalabra().toUpperCase();
+            palabraHoy = usar.escogerPalabra();
             System.out.print(palabraHoy);
             //Convierto palabra aleatoria en array
             arrayAleat = usar.convertirChar(palabraHoy);
@@ -37,8 +35,11 @@ public class Main {
                 for (int i = 0; i < FILAS_N; i++) {
                     palabraEscrita = usar.introducirPalabra(diccionario, palabraHoy);
                     arrayHoy = palabraEscrita.toCharArray();
+                    System.out.println("\n Puntuación :" + score);
                     if (palabraHoy.equals(palabraEscrita)) {
+                       //System.out.println(" Entra en if equals??? ");
                         juego = false;
+                        break;
                     } else score = score - FALLO;
                     if (score == 0) {
                         juego = false;
@@ -51,13 +52,10 @@ public class Main {
                         } else {
                             System.out.print(arrayHoy[j] + " ");
                         }
-
                     }
-                    System.out.println(score);
-
-
                 }
-            } while (juego);
+            } while (juego || score==0);
+           // System.out.println("salida 1 de juego");
             if (score == 0) {
                 System.out.println("Has perdido");
             } else {
@@ -66,5 +64,6 @@ public class Main {
                 juego = false;
             }
         } while (juego);
+       // System.out.println("salida 2 de juego");
     }
 }
